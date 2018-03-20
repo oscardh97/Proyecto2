@@ -1,38 +1,16 @@
 {
-  "name": "voting_app",
-  "version": "1.1.0",
-  "author": "Fullstack.io",
-  "scripts": {
-    "start": "npm run server",
-    "server": "node index.js"
-  },
+  "name": "votingfe",
+  "version": "0.1.0",
   "private": true,
-  "keywords": [
-    "node",
-    "heroku",
-    "create-react-app",
-    "react"
-  ],
-  "devDependencies": {
-    "concurrently": "2.2.0"
-  },
-  "description": "1. Ensure you have `npm` installed.",
-  "main": "disable-browser-cache.js",
-  "directories": {
-    "test": "tests"
-  },
   "dependencies": {
-    "concurrently": "2.2.0",
-    "ejs": "~1.0.0",
-    "express": "~4.9.8"
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/oscarulox/voting_app.git"
-  },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/oscarulox/voting_app/issues"
-  },
-  "homepage": "https://github.com/oscarulox/voting_app#readme"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
 }
