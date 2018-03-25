@@ -20,15 +20,12 @@ class App extends Component {
         
         <ProductForm 
           ref = {(form) => {this.child = form}}
-          title = "Test"
-          description = "Probando"
-          url = "google.com"
           isNew = {false}
         />
 
         <ProductsContainer />
         <Button onClick={this.test}>
-          Launch demo modal
+          Agregar Produto
         </Button>
       </div>
     );

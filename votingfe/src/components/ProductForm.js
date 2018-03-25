@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap'
 // Modal = ReactBootstrap.Modal;
 // Button = ReactBootstrap.Button;
@@ -6,7 +7,12 @@ class ProductForm extends Component {
 	constructor(props, context) {
 		super(props, context);
 	    this.state = {
-	      modal: false
+	    	id: null,
+		    modal: false,
+		    title: this.props.title,
+		    description: this.props.description,
+			// url: this.props.url,
+			votes: this.props.votes || 0
 	    };
 
     	this.toggle = this.toggle.bind(this);
@@ -19,6 +25,25 @@ class ProductForm extends Component {
 	handleShow() {
 		this.setState({ show: true });
 	}
+
+	save = () => {
+		let _self = this;
+		console.log(this)
+		axios.post("http://localhost:3001/api/v1/products",{
+			product: {
+				title: this.state.title,
+				description: this.state.description,
+				votes: this.state.votes
+			}
+		}
+		).then(response => {
+			console.log(response)
+			 this.setState(response.data)
+			_self.toggle();
+		}).catch(error => {
+			console.log(error)
+		});
+	}
 	
 	toggle() {
 		console.log("@ProductForm.toggle()...")
@@ -27,6 +52,10 @@ class ProductForm extends Component {
 	    });
 	}
 
+	handleInput = (e) => {
+	    this.props.resetNotification()
+	    this.setState({[e.target.name]: e.target.value})
+	}
 				// key = {product.id}
 				// id = {product.id}
 				// title = {product.title}
@@ -45,15 +74,11 @@ class ProductForm extends Component {
 		          <ModalBody>
 			        <FormGroup>
 			          <Label for="title">Title</Label>
-			          <Input type="text" name="title" id="title" placeholder="Title..." value={this.props.title} />
+			          <Input type="text" name="title" id="title" placeholder="Title..." value={this.props.title} onChange={this.handleInput} />
 			        </FormGroup>
 			        <FormGroup>
 			          <Label for="description">Description</Label>
-			          <Input type="textarea" name="description" id="description" placeholder="Description..." value={this.props.description} />
-			        </FormGroup>
-			        <FormGroup>
-			          <Label for="url">URL</Label>
-			          <Input type="text" name="url" id="url" placeholder="URL..." value={this.props.url} />
+			          <Input type="textarea" name="description" id="description" placeholder="Description..." value={this.props.description} onChange={this.handleInput}/>
 			        </FormGroup>
 			        {this.props.isNew &&
 				        <FormGroup>
@@ -63,7 +88,7 @@ class ProductForm extends Component {
 		          </ModalBody>
 		          
 		          <ModalFooter>
-		            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+		            <Button color="primary" onClick={this.save}>Create</Button>{' '}
 		            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
 		          </ModalFooter>
 		        </Modal>
