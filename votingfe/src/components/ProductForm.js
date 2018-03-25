@@ -20,13 +20,14 @@ class ProductForm extends Component {
 
 	save = () => {
 		let _self = this;
-		axios.post("http://localhost:3001/api/v1/products" + (this.props.id ? ("/" + this.props.id) : ""),
-		// axios.post(`http://localhost:3001/api/v1/products/${this.props.id}`,
-			{
-				title: this.state.title,
-				description: this.state.description,
-				votes: this.state.votes
-			}
+
+    	const product = {
+			title: this.state.title,
+			description: this.state.description,
+			votes: this.state.votes
+		};
+		axios[this.props.id ? "put" : "post"]("http://localhost:3001/api/v1/products" + (this.props.id ? ("/" + this.props.id) : ""),
+			{product: product}
 		).then(response => {
 			console.log(response)
 			 this.setState(response.data)
