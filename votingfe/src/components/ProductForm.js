@@ -18,6 +18,11 @@ class ProductForm extends Component {
     	this.toggle = this.toggle.bind(this);
 	}
 
+	deletep = () => {
+    	axios.delete(`http://localhost:3001/api/v1/products/${this.props.id}`)
+    	.catch(error => console.log(error))
+  	}
+
 	save = () => {
 		let _self = this;
 

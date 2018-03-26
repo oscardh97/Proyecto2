@@ -20,6 +20,16 @@ module Api::V1
 			@product = Product.find(params[:id])
 			render json: @product
 		end
+
+		def destroy
+  			@product = Product.find(params[:id])
+  			if @product.destroy
+    			head :no_content, status: :ok
+  			else
+    		render json: @product.errors, status: :unprocessable_entity
+  		end
+end
+
 		
 		private
 			def product_params

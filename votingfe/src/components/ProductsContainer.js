@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import update from 'immutability-helper'
 import Product from './Product'
 class ProductsContainer extends Component {
 	constructor(props) {
@@ -18,7 +19,12 @@ class ProductsContainer extends Component {
 		}).catch(error => console.log(error))
 	}
 
-	render() {
+	deletep = () => {
+    	axios.delete(`http://localhost:3001/api/v1/products/${this.props.id}`)
+    	.catch(error => console.log(error))
+  	}  
+
+  	render() {
 		return (
 			<div>
 			Products
@@ -30,9 +36,11 @@ class ProductsContainer extends Component {
 						title = {product.title}
 						description = {product.description}
 						votes = {product.votes}
+
 					/>
 				)
 			})}
+
 			</div>
 		)
 	}
