@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h1>Products</h1>
+          <h1 className="header"> Our Products</h1>
         </div>
         
         <ProductForm 
@@ -24,8 +24,8 @@ class App extends Component {
         />
 
         <ProductsContainer />
-        <Button onClick={this.test}>
-          Agregar Produto
+        <Button className="Create" onClick={this.test}>
+          Create Product
         </Button>
       </div>
     );

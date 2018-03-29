@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import update from 'immutability-helper'
 import Product from './Product'
+import './ProductContainer.css'
 class ProductsContainer extends Component {
 	constructor(props) {
 		super(props)
@@ -27,7 +28,6 @@ class ProductsContainer extends Component {
   	render() {
 		return (
 			<div>
-			Products
 			{this.state.products.map((product) => {
 				return (
 					<Product 

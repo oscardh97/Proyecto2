@@ -1,0 +1,49 @@
+.JumboProduct{
+	width: 75%;
+	margin-left: 10%; 
+	margin-right:5%;
+	padding-bottom: 0%;
+	padding-top: 2%;
+	border-radius: 15px;
+	background-color: #d6d6c2;
+}
+
+.Title{
+	align-content: center;
+	font-size:25px;
+	font-style: italic;
+	font-family: "Time New Roman";
+	font-weight: bold;
+}
+
+.Votes{
+	text-align:left;
+	align-content: right;
+	color:darkblue;
+}
+
+.Description{
+	font-style: justify;
+	text-align: left;	
+}
+
+.Edit{
+	background-color:blue;
+	margin: 10px 10px 10px 10px;
+
+}
+
+.Delete{
+	background-color:darkred; 
+}
+
+.Upvote{
+	color: #0000cc;
+	padding-bottom: 0%;
+	padding-top: 0%;
+	border-color: #d6d6c2;
+	background-color:#d6d6c2;
+	margin-left: 90%;
+	font-size: 20px;
+	
+}

@@ -9,11 +9,19 @@
 
 .App-header {
   background-color: #222;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfN4mC0zO2j_7HXl5xfvJR8xG6fI9ueLs3TrKguGWP2tnjiPX9");
   height: 150px;
   padding: 20px;
-  color: white;
+  margin-bottom: 5%;
+  text-align:center;
+
 }
 
+.header{
+  color: white;
+  margin-top: 1%;
+  font-size: 70px; 
+}
 .App-title {
   font-size: 1.5em;
 }
@@ -22,6 +30,11 @@
   font-size: large;
 }
 
+.Create{
+  margin-bottom: 10%;
+  margin-right: 5%;
+  background-color: #ffd11a;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
