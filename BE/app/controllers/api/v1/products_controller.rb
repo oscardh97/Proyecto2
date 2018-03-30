@@ -1,7 +1,7 @@
 module Api::V1
 	class ProductsController < ApplicationController
 		def index
-			@products = Product.all
+			@products = Product.order("votes DESC")
 			render json: @products
 		end
 
@@ -33,7 +33,7 @@ end
 		
 		private
 			def product_params
-				params.require(:product).permit(:title, :description, :votes)
+				params.require(:product).permit(:title, :description, :votes, :productImageUrl)
 			end
 	end
 end

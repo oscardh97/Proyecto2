@@ -7,9 +7,6 @@ import ProductForm from './components/ProductForm'
 // Button = ReactBootstrap.Button;
 
 class App extends Component {
-  test = () => {
-    this.child.toggle()
-  }
   render() {
     
     return (
@@ -18,15 +15,7 @@ class App extends Component {
           <h1 className="header"> Our Products</h1>
         </div>
         
-        <ProductForm 
-          ref = {(form) => {this.child = form}}
-          isNew = {false}
-        />
-
         <ProductsContainer />
-        <Button className="Create" onClick={this.test}>
-          Create Product
-        </Button>
       </div>
     );
   }

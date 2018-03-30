@@ -9,12 +9,14 @@ class ProductForm extends Component {
 	    this.state = {
 	    	id: this.props.id,
 		    modal: false,
+		    isNew: this.props.isNew,
 		    title: this.props.title,
 		    description: this.props.description,
+		    productImageUrl: this.props.productImageUrl,
+		    updateParent: this.props.updateParent,
 			// url: this.props.url,
 			votes: this.props.votes || 0
 	    };
-
     	this.toggle = this.toggle.bind(this);
 	}
 
@@ -29,37 +31,58 @@ class ProductForm extends Component {
     	const product = {
 			title: this.state.title,
 			description: this.state.description,
-			votes: this.state.votes
+			votes: this.state.votes,
+			productImageUrl: this.state.productImageUrl
 		};
 		axios[this.props.id ? "put" : "post"]("http://localhost:3001/api/v1/products" + (this.props.id ? ("/" + this.props.id) : ""),
 			{product: product}
 		).then(response => {
 			console.log(response)
-			 this.setState(response.data)
-			_self.toggle();
+			 // this.setState(response.data);
+			 
+			 if (this.state.updateParent) {
+			 	this.state.updateParent(response.data);
+			 }
+			 if (this.state.modal){
+				_self.toggle();
+			 }
+			 	
 		}).catch(error => {
 			console.log(error)
 		});
 	}
+
 	
-	toggle(product) {
-		console.log("@ProductForm.toggle()...")
-	    this.setState({
-	      modal: !this.state.modal
-	    });
+	toggle() {
+		//console.log("@ProductForm.toggle()...")
+		let newData = {};
+		if (this.state.modal && this.state.isNew) {
+			newData = {
+		    	id: null,
+			    title: "",
+			    description: "",
+			    productImageUrl: "",
+				votes: 0
+			}
+		}
+		newData.modal = !this.state.modal;
+	    this.setState(newData);
 	}
 
+	handleProductImage = (e) => {
+	    this.setState({
+	    	productImageUrl: e.target.value
+	    });
+	}
 	handleInput = (e) => {
 	    // this.props.resetNotification()
-	    console.log(e.target.name)
-	    console.log(e.target.value)
 	    this.setState({
 	    	[e.target.name]: e.target.value
 	    })
-	    console.log(this.state)
 	}
 	render() {
 		return (
+			// const productImageUrl = product.productImageUrl ? ("-" + product.productImageUrl) : "";
 			<div>
 		        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
 		          <ModalHeader toggle={this.toggle}>Product</ModalHeader>
@@ -73,11 +96,39 @@ class ProductForm extends Component {
 			          <Label for="description">Description</Label>
 			          <Input type="textarea" name="description" id="description" placeholder="Description..." value={this.state.description} onChange={this.handleInput}/>
 			        </FormGroup>
-			        {this.props.isNew &&
+			        {!this.props.isNew &&
 				        <FormGroup>
 				        	<Label>Total votos: {this.props.votes || 0}</Label>
 				        </FormGroup>
 		          	}
+
+			        <FormGroup tag="fieldset">
+			          <legend>Image:</legend>
+			          <FormGroup check inline>
+			            <Label check>
+			              <Input type="radio" name="radio1" value="steel" checked={!this.state.productImageUrl || this.state.productImageUrl === "steel"} onChange={this.handleProductImage} />{' '}
+			              <img src='products/image-steel.png' heigth="100" width="75" />
+			            </Label>
+			          </FormGroup>
+			          <FormGroup check inline>
+			            <Label check>
+			              <Input type="radio" name="radio1" value="aqua" checked={this.state.productImageUrl === "aqua"} onChange={this.handleProductImage}/>{' '}
+			              <img src='products/image-aqua.png' heigth="100" width="75" />
+			            </Label>
+			          </FormGroup>
+			          <FormGroup check inline>
+			            <Label check>
+			              <Input type="radio" name="radio1" value="rose" checked={this.state.productImageUrl === "rose"} onChange={this.handleProductImage} />{' '}
+			              <img src='products/image-rose.png' heigth="100" width="75" />
+			            </Label>
+			          </FormGroup>
+			          <FormGroup check inline>
+			            <Label check>
+			              <Input type="radio" name="radio1" value="yellow" checked={this.state.productImageUrl === "yellow"} onChange={this.handleProductImage} />{' '}
+			              <img src='products/image-yellow.png' heigth="100" width="75" />
+			            </Label>
+			          </FormGroup>
+			        </FormGroup>
 		          </ModalBody>
 		          
 		          <ModalFooter>
