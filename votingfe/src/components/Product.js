@@ -90,18 +90,25 @@ class Product extends Component {
 				          titleRef = {input => this.title = input}
 				        />
 
-						<div className='image'>
-							<img src={"products/image" + productImageUrl + ".png"} width="100" />
-						</div>
-				        <Button className="Upvote" onClick={this.handleUpVote} ><FaThumbsOUp/></Button>
-				        <h1 className="Title" > Title: {this.state.title}</h1>
+						<p className="Votes"> 
+							Votes: {this.state.votes}
+							<Button className="Upvote" onClick={this.handleUpVote} ><FaThumbsOUp/></Button>
 
-						<p 
-							className="Votes"> Votes: {this.state.votes}
 							
 						</p>
+				        
+				    	
+				    	
 
-						<p className="Description" >Description: {this.state.description}</p>
+					    <p className="Title" > 
+					    		<img className="Image" src={"products/image" + productImageUrl + ".png"} width="100" />
+					    		{this.state.title}
+					    </p>
+					    		
+						
+						
+
+						<p className="Description" >{this.state.description}</p>
 						
 						
 						<Button className="Edit" onClick={this.openForm}>Edit</Button>

@@ -8,16 +8,24 @@
 	background-color: #d6d6c2;
 }
 
+.Image{
+	display: inline-block;
+	margin-right:5%;
+
+	
+}
+
 .Title{
-	align-content: center;
+	text-align: left;
 	font-size:25px;
 	font-style: italic;
 	font-family: "Time New Roman";
-	font-weight: bold;
+	font-weight: bold;	
+
 }
 
 .Votes{
-	text-align:left;
+	text-align:right;
 	align-content: right;
 	color:darkblue;
 }
@@ -38,12 +46,13 @@
 }
 
 .Upvote{
+	display: inline-block;
+	margin-left: 1%;
 	color: #0000cc;
 	padding-bottom: 0%;
 	padding-top: 0%;
 	border-color: #d6d6c2;
 	background-color:#d6d6c2;
-	margin-left: 90%;
 	font-size: 20px;
 	
 }
