@@ -17,7 +17,7 @@ class ProductsContainer extends Component {
    		this.child.toggle()
 	}
 	getProducts = () => {
-		axios.get('http://localhost:3001/api/v1/products.json').then(response => {
+		axios.get('https://votting-app-be.herokuapp.com/api/v1/products.json').then(response => {
 			this.setState({
 				products: response.data
 			})
@@ -30,7 +30,7 @@ class ProductsContainer extends Component {
 	}
 
 	deletep = () => {
-    	axios.delete(`http://localhost:3001/api/v1/products/${this.props.id}`)
+    	axios.delete(`https://votting-app-be.herokuapp.com/api/v1/products/${this.props.id}`)
     	.catch(error => console.log(error))
   	}  
 

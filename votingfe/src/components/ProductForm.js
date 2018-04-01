@@ -21,7 +21,7 @@ class ProductForm extends Component {
 	}
 
 	deletep = () => {
-    	axios.delete(`http://localhost:3001/api/v1/products/${this.props.id}`)
+    	axios.delete(`https://votting-app-be.herokuapp.com/api/v1/products/${this.props.id}`)
     	.catch(error => console.log(error))
   	}
 
@@ -34,7 +34,7 @@ class ProductForm extends Component {
 			votes: this.state.votes,
 			productImageUrl: this.state.productImageUrl
 		};
-		axios[this.props.id ? "put" : "post"]("http://localhost:3001/api/v1/products" + (this.props.id ? ("/" + this.props.id) : ""),
+		axios[this.props.id ? "put" : "post"]("https://votting-app-be.herokuapp.com/api/v1/products" + (this.props.id ? ("/" + this.props.id) : ""),
 			{product: product}
 		).then(response => {
 			console.log(response)

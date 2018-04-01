@@ -36,7 +36,7 @@ class Product extends Component {
 			votes: parseInt(this.state.votes) + 1
 		};
 
-		axios.put("http://localhost:3001/api/v1/products" + (this.props.id ? ("/" + this.props.id) : ""),
+		axios.put("https://votting-app-be.herokuapp.com/api/v1/products" + (this.props.id ? ("/" + this.props.id) : ""),
 			{product: product}
 		).then(response => {
 			this.setState(response.data);
@@ -48,7 +48,7 @@ class Product extends Component {
 	}
 
 	handleDelete = () => {
-		axios.delete(`http://localhost:3001/api/v1/products/${this.state.id}`)
+		axios.delete(`https://votting-app-be.herokuapp.com/api/v1/products/${this.state.id}`)
 		.then(response => {
 			this.state.updateParent();
 		})
